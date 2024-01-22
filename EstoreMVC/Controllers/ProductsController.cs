@@ -6,48 +6,85 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EstoreMVC.Models;
+using System.Net.Http.Headers;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace EstoreMVC.Controllers
 {
     public class ProductsController : Controller
     {
         private readonly EStoreContext _context;
+        private readonly HttpClient client;
+        private string ProductsUrl = "http://localhost:5105/api/Products";
 
         public ProductsController(EStoreContext context)
         {
             _context = context;
+            client = new HttpClient();
+            var contentType = new MediaTypeWithQualityHeaderValue("application/json");
+            client.DefaultRequestHeaders.Accept.Add(contentType);
         }
 
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            var eStoreContext = _context.Products.Include(p => p.Category);
-            return View(await eStoreContext.ToListAsync());
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(ProductsUrl);
+                response.EnsureSuccessStatusCode();
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+                string strData = await response.Content.ReadAsStringAsync();
+                List<Product> products = JsonSerializer.Deserialize<List<Product>>(strData, options);
+                return View(products);
+            }
+            catch
+            {
+                return NoContent();
+            }
         }
 
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Products == null)
+            if (id == null)
             {
-                return NotFound();
+                return BadRequest(); // hoặc xử lý trường hợp id là null nếu cần
             }
 
-            var product = await _context.Products
-                .Include(p => p.Category)
-                .FirstOrDefaultAsync(m => m.ProductId == id);
-            if (product == null)
-            {
-                return NotFound();
-            }
+            string productDetailApi = "http://localhost:5105/api/Products" + "/" + id;
+            HttpResponseMessage response = await client.GetAsync(productDetailApi);
 
-            return View(product);
+            if (response.IsSuccessStatusCode)
+            {
+                string strData = await response.Content.ReadAsStringAsync();
+
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true,
+                    ReferenceHandler = ReferenceHandler.Preserve
+                };
+
+                // Giải mã thành một đối tượng Product, không phải là một danh sách
+                Product product = JsonSerializer.Deserialize<Product>(strData, options);
+
+                //ViewData["Details"] = product; // Sử dụng "Product" thay vì "Products"
+                return View(product);
+            }
+            else
+            {
+                // Xử lý trường hợp cuộc gọi API không thành công
+                return StatusCode((int)response.StatusCode); // Bạn có thể điều chỉnh xử lý mã trạng thái tùy thuộc vào yêu cầu của ứng dụng
+            }
         }
 
         // GET: Products/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId");
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName");
             return View();
         }
 
@@ -55,14 +92,11 @@ namespace EstoreMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProductId,CategoryId,ProductName,Weight,UnitPrice,UnitInStock")] Product product)
         {
-            if (ModelState.IsValid)
+            using (var respone = await client.PostAsJsonAsync(ProductsUrl, product))
             {
-                _context.Add(product);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                string apiResponse = await respone.Content.ReadAsStringAsync();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", product.CategoryId);
-            return View(product);
+            return RedirectToAction("Index");
         }
 
         // GET: Products/Edit/5
@@ -78,7 +112,7 @@ namespace EstoreMVC.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", product.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", product.CategoryId);
             return View(product);
         }
 
@@ -86,33 +120,26 @@ namespace EstoreMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ProductId,CategoryId,ProductName,Weight,UnitPrice,UnitInStock")] Product product)
         {
-            if (id != product.ProductId)
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                
             }
 
-            if (ModelState.IsValid)
+            using (var response = await client.PutAsJsonAsync(ProductsUrl + "/" + id, product))
             {
-                try
+                // Kiểm tra xem yêu cầu đã thành công hay không
+                if (response.IsSuccessStatusCode)
                 {
-                    _context.Update(product);
-                    await _context.SaveChangesAsync();
+                    // Nếu thành công, chuyển hướng đến trang Index
+                    return RedirectToAction("Index");
                 }
-                catch (DbUpdateConcurrencyException)
+                else
                 {
-                    if (!ProductExists(product.ProductId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    string apiResponse = await response.Content.ReadAsStringAsync();
                 }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", product.CategoryId);
-            return View(product);
+
+            return RedirectToAction("Index");
         }
 
         // GET: Products/Delete/5
@@ -139,18 +166,17 @@ namespace EstoreMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Products == null)
+            var productId = _context.Orders.Find(id);
+            if (productId != null)
             {
-                return Problem("Entity set 'EStoreContext.Products'  is null.");
+                String url = "http://localhost:5105/api/Products/" + id;
+                await client.DeleteAsync(url);
+                return RedirectToAction("Index");
             }
-            var product = await _context.Products.FindAsync(id);
-            if (product != null)
+            else
             {
-                _context.Products.Remove(product);
+                return NotFound();
             }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
         }
 
         private bool ProductExists(int id)

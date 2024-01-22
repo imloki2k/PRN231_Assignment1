@@ -49,31 +49,37 @@ namespace EstoreAPI.Controllers
             return product;
         }
 
-        // PUT: api/Products/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduct(int id, Product product)
         {
             if (id != product.ProductId)
             {
-                return BadRequest();
+                return BadRequest("The provided ID does not match the product ID.");
             }
-
-            _context.Entry(product).State = EntityState.Modified;
 
             try
             {
+                var existingProduct = await _context.Products.FindAsync(id);
+
+                if (existingProduct == null)
+                {
+                    return NotFound($"Product with ID {id} not found.");
+                }
+
+                // Update only the necessary fields, not the entire entry
+                _context.Entry(existingProduct).CurrentValues.SetValues(product);
+
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
                 if (!ProductExists(id))
                 {
-                    return NotFound();
+                    return NotFound($"Product with ID {id} not found.");
                 }
                 else
                 {
-                    throw;
+                    throw; // Handle concurrency conflict as needed
                 }
             }
 
