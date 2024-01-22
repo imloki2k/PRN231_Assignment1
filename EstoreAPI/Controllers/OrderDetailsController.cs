@@ -33,13 +33,13 @@ namespace EstoreAPI.Controllers
 
         // GET: api/OrderDetails/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<OrderDetail>> GetOrderDetail(int id)
+        public async Task<ActionResult<List<OrderDetail>>> GetOrderDetail(int id)
         {
           if (_context.OrderDetails == null)
           {
               return NotFound();
           }
-            var orderDetail = await _context.OrderDetails.FindAsync(id);
+            var orderDetail = await _context.OrderDetails.Where(model => model.OrderId == id).ToListAsync();
 
             if (orderDetail == null)
             {
