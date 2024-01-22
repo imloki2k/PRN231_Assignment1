@@ -9,61 +9,81 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = EstoreMVC
 build_property.RootNamespace = EstoreMVC
-build_property.ProjectDir = D:\University_FPT\2022_PRN231\2024\Practice\PRN231.M_Group1_Assignment1\EstoreMVC\
+build_property.ProjectDir = E:\PRN231\PRN231.M_Group1_Assignment1\EstoreMVC\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\University_FPT\2022_PRN231\2024\Practice\PRN231.M_Group1_Assignment1\EstoreMVC
+build_property.MSBuildProjectDirectory = E:\PRN231\PRN231.M_Group1_Assignment1\EstoreMVC
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/University_FPT/2022_PRN231/2024/Practice/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Home/Index.cshtml]
+[E:/PRN231/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/University_FPT/2022_PRN231/2024/Practice/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Home/Privacy.cshtml]
+[E:/PRN231/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/University_FPT/2022_PRN231/2024/Practice/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Members/Create.cshtml]
+[E:/PRN231/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Members/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVtYmVyc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/University_FPT/2022_PRN231/2024/Practice/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Members/Delete.cshtml]
+[E:/PRN231/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Members/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVtYmVyc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/University_FPT/2022_PRN231/2024/Practice/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Members/Details.cshtml]
+[E:/PRN231/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Members/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVtYmVyc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/University_FPT/2022_PRN231/2024/Practice/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Members/Edit.cshtml]
+[E:/PRN231/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Members/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVtYmVyc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/University_FPT/2022_PRN231/2024/Practice/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Members/Index.cshtml]
+[E:/PRN231/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Members/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVtYmVyc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/University_FPT/2022_PRN231/2024/Practice/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Members/Login.cshtml]
+[E:/PRN231/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Members/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVtYmVyc1xMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/University_FPT/2022_PRN231/2024/Practice/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Shared/Error.cshtml]
+[E:/PRN231/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Products/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PRN231/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Products/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PRN231/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Products/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PRN231/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Products/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PRN231/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Products/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PRN231/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/University_FPT/2022_PRN231/2024/Practice/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Shared/_ValidationScriptsPartial.cshtml]
+[E:/PRN231/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/University_FPT/2022_PRN231/2024/Practice/PRN231.M_Group1_Assignment1/EstoreMVC/Views/_ViewImports.cshtml]
+[E:/PRN231/PRN231.M_Group1_Assignment1/EstoreMVC/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/University_FPT/2022_PRN231/2024/Practice/PRN231.M_Group1_Assignment1/EstoreMVC/Views/_ViewStart.cshtml]
+[E:/PRN231/PRN231.M_Group1_Assignment1/EstoreMVC/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/University_FPT/2022_PRN231/2024/Practice/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Shared/_Layout.cshtml]
+[E:/PRN231/PRN231.M_Group1_Assignment1/EstoreMVC/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-grymytjiln
